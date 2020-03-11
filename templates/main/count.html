@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="{% static 'js/echars.min.js' %}"></script>
+    <style>
+        div#main div {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="diannao" style="width: 600px;height:400px;"></div>
+    <div id="shouji" style="width: 600px;height:400px;"></div>
+    <div id="ipad" style="width: 600px;height:400px;"></div>
+    <div id="erji" style="width: 600px;height:400px;"></div>
+    <div id="yingpan" style="width: 600px;height:400px;"></div>
+</div>
+
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var diannao = echarts.init(document.getElementById('diannao'));
+
+    option_diannao = {
+        title: {
+            text: '电脑销售量'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '华为', '苹果'],
+                ['近一周', 43.3, 85.8],
+                ['近一个月', 83.1, 73.4],
+                ['累计销量', 86.4, 65.2],
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+        ]
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    diannao.setOption(option_diannao);
+
+
+    var shouji = echarts.init(document.getElementById('shouji'));
+
+    // 指定图表的配置项和数据
+    var option_shouji = {
+        title: {
+            text: '手机销售量'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '小米', '苹果'],
+                ['近一周', 43.3, 85.8],
+                ['近一个月', 83.1, 73.4],
+                ['累计销量', 86.4, 65.2],
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    shouji.setOption(option_shouji);
+
+
+    var ipad = echarts.init(document.getElementById('ipad'));
+
+    // 指定图表的配置项和数据
+    var option_ipad = {
+        title: {
+            text: 'ipad销售量'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '华为', '苹果'],
+                ['近一周', 43.3, 85.8],
+                ['近一个月', 83.1, 73.4],
+                ['累计销量', 86.4, 65.2],
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    ipad.setOption(option_ipad);
+
+
+    var erji = echarts.init(document.getElementById('erji'));
+
+    // 指定图表的配置项和数据
+    var option_erji = {
+        title: {
+            text: '耳机销售量'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '小米', '苹果'],
+                ['近一周', 43.3, 85.8],
+                ['近一个月', 83.1, 73.4],
+                ['累计销量', 86.4, 65.2],
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    erji.setOption(option_erji);
+
+
+    var yingpan = echarts.init(document.getElementById('yingpan'));
+
+    // 指定图表的配置项和数据
+    var option_yingpan = {
+        title: {
+            text: '硬盘销售量'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '固态硬盘', '机械硬盘'],
+                ['近一周', 43.3, 85.8],
+                ['近一个月', 83.1, 73.4],
+                ['累计销量', 86.4, 65.2],
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+
+        series: [
+            {type: 'bar'},
+            {type: 'bar'},
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    yingpan.setOption(option_yingpan);
+
+
+    var int = self.setInterval(function (){
+        option_yingpan.dataset.source[1][1] = parseInt(option_yingpan.dataset.source[1][1]) + 5;
+        console.log(option_yingpan.dataset.source[1][1]);
+        yingpan.setOption(option_yingpan);
+    }, 10000);
+
+
+
+</script>
+</body>
+</html>
