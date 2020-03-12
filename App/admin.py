@@ -126,14 +126,6 @@ class GoodsAdmin(BaseAdmin):
     )  # 显示
 
 
-@admin.register(Cart)
-class CartAdmin(BaseAdmin):
-    list_display = (
-        'c_user',
-        'c_goods',
-        'c_goods_num',
-        'c_is_select',
-    )  # 显示
 
 
 @admin.register(Order)

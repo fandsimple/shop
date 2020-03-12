@@ -1,3 +1,4 @@
+import json
 import os
 import uuid
 import pdb
@@ -572,8 +573,43 @@ def add_address(request):
 
 
 def count(request): # 数据统计绘图
-
-
-
     return render(request, 'main/count.html')
 
+
+def countdata(request):
+    # 统计所有分类的累计销量
+    data = {
+        'diannaopingguo': 0,
+        'diannaohuawei': 0,
+        'shoujipingguo': 0,
+        'shoujixiaomi': 0,
+        'ipadhuawei': 0,
+        'ipadpingguo': 0,
+        'erjipingguo': 0,
+        'erjixiaomi': 0,
+        'yingpanjixie': 0,
+        'yingpangutai': 0,
+    }
+    goods = Goods.objects.all()
+    for good in goods:
+        if good.childcid == 11:
+            data['diannaopingguo'] = data['diannaopingguo'] + good.productnum
+        elif good.childcid == 12:
+            data['diannaohuawei'] = data['diannaohuawei'] + good.productnum
+        elif good.childcid == 22:
+            data['shoujixiaomi'] = data['shoujixiaomi'] + good.productnum
+        elif good.childcid == 21:
+            data['shoujipingguo'] = data['shoujipingguo'] + good.productnum
+        elif good.childcid == 31:
+            data['ipadhuawei'] = data['ipadhuawei'] + good.productnum
+        elif good.childcid == 32:
+            data['ipadpingguo'] = data['ipadpingguo'] + good.productnum
+        elif good.childcid == 42:
+            data['erjixiaomi'] = data['erjixiaomi'] + good.productnum
+        elif good.childcid == 41:
+            data['erjipingguo'] = data['erjipingguo'] + good.productnum
+        elif good.childcid == 51:
+            data['yingpangutai'] = data['yingpangutai'] + good.productnum
+        elif good.childcid == 52:
+            data['yingpanjixie'] = data['yingpanjixie'] + good.productnum
+    return JsonResponse(data)

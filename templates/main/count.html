@@ -6,6 +6,7 @@
     <title>ECharts</title>
     <!-- 引入 echarts.js -->
     <script src="{% static 'js/echars.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
     <style>
         div#main div {
             float: left;
@@ -35,9 +36,9 @@
         dataset: {
             source: [
                 ['product', '华为', '苹果'],
-                ['近一周', 43.3, 85.8],
-                ['近一个月', 83.1, 73.4],
-                ['累计销量', 86.4, 65.2],
+                ['近一周', 1000, 1300],
+                ['近一个月', 2200, 3500],
+                ['累计销量', 66, 65.2],
             ]
         },
         xAxis: {type: 'category'},
@@ -48,10 +49,6 @@
             {type: 'bar'},
         ]
     };
-
-
-    // 使用刚指定的配置项和数据显示图表。
-    diannao.setOption(option_diannao);
 
 
     var shouji = echarts.init(document.getElementById('shouji'));
@@ -66,8 +63,8 @@
         dataset: {
             source: [
                 ['product', '小米', '苹果'],
-                ['近一周', 43.3, 85.8],
-                ['近一个月', 83.1, 73.4],
+                ['近一周', 999, 1059],
+                ['近一个月', 1888, 2000],
                 ['累计销量', 86.4, 65.2],
             ]
         },
@@ -79,10 +76,6 @@
             {type: 'bar'},
         ]
     };
-
-    // 使用刚指定的配置项和数据显示图表。
-    shouji.setOption(option_shouji);
-
 
     var ipad = echarts.init(document.getElementById('ipad'));
 
@@ -96,8 +89,8 @@
         dataset: {
             source: [
                 ['product', '华为', '苹果'],
-                ['近一周', 43.3, 85.8],
-                ['近一个月', 83.1, 73.4],
+                ['近一周', 555, 996],
+                ['近一个月', 9999, 11888],
                 ['累计销量', 86.4, 65.2],
             ]
         },
@@ -109,9 +102,6 @@
             {type: 'bar'},
         ]
     };
-
-    // 使用刚指定的配置项和数据显示图表。
-    ipad.setOption(option_ipad);
 
 
     var erji = echarts.init(document.getElementById('erji'));
@@ -126,8 +116,8 @@
         dataset: {
             source: [
                 ['product', '小米', '苹果'],
-                ['近一周', 43.3, 85.8],
-                ['近一个月', 83.1, 73.4],
+                ['近一周', 1336, 1227],
+                ['近一个月', 2036, 2507],
                 ['累计销量', 86.4, 65.2],
             ]
         },
@@ -139,9 +129,6 @@
             {type: 'bar'},
         ]
     };
-
-    // 使用刚指定的配置项和数据显示图表。
-    erji.setOption(option_erji);
 
 
     var yingpan = echarts.init(document.getElementById('yingpan'));
@@ -156,8 +143,8 @@
         dataset: {
             source: [
                 ['product', '固态硬盘', '机械硬盘'],
-                ['近一周', 43.3, 85.8],
-                ['近一个月', 83.1, 73.4],
+                ['近一周', 1045, 1206],
+                ['近一个月', 1505, 1806],
                 ['累计销量', 86.4, 65.2],
             ]
         },
@@ -170,16 +157,78 @@
         ]
     };
 
-    // 使用刚指定的配置项和数据显示图表。
-    yingpan.setOption(option_yingpan);
-
-
-    var int = self.setInterval(function (){
-        option_yingpan.dataset.source[1][1] = parseInt(option_yingpan.dataset.source[1][1]) + 5;
-        console.log(option_yingpan.dataset.source[1][1]);
+    //初始化请求
+    $.getJSON("/admin/App/countdata/", {}, function (data) {
+        console.log(data);
+        option_yingpan.dataset.source[3][1] = data.yingpangutai;
+        option_yingpan.dataset.source[3][2] = data.yingpanjixie;
         yingpan.setOption(option_yingpan);
-    }, 10000);
 
+        option_erji.dataset.source[3][1] = data.erjixiaomi;
+        option_erji.dataset.source[3][2] = data.erjipingguo;
+        erji.setOption(option_erji);
+
+        option_ipad.dataset.source[3][1] = data.ipadhuawei;
+        option_ipad.dataset.source[3][2] = data.ipadpingguo;
+        ipad.setOption(option_ipad);
+
+        option_shouji.dataset.source[3][1] = data.shoujixiaomi;
+        option_shouji.dataset.source[3][2] = data.shoujipingguo;
+        shouji.setOption(option_shouji);
+
+        option_diannao.dataset.source[3][1] = data.diannaohuawei;
+        option_diannao.dataset.source[3][2] = data.diannaopingguo;
+        diannao.setOption(option_diannao);
+
+
+    });
+
+
+    var int = self.setInterval(function () {
+        var icr = Math.round(Math.random() * 5) + 100;
+
+        option_yingpan.dataset.source[1][1] = option_yingpan.dataset.source[1][1] + icr;
+        option_yingpan.dataset.source[1][2] = option_yingpan.dataset.source[1][2] + icr;
+        option_yingpan.dataset.source[2][1] = option_yingpan.dataset.source[2][1] + icr;
+        option_yingpan.dataset.source[2][2] = option_yingpan.dataset.source[2][2] + icr;
+        option_yingpan.dataset.source[3][1] = option_yingpan.dataset.source[3][1] + icr;
+        option_yingpan.dataset.source[3][2] = option_yingpan.dataset.source[3][2] + icr;
+        yingpan.setOption(option_yingpan);
+
+        option_erji.dataset.source[1][1] = option_erji.dataset.source[1][1] + icr;
+        option_erji.dataset.source[1][2] = option_erji.dataset.source[1][2] + icr;
+        option_erji.dataset.source[2][1] = option_erji.dataset.source[2][1] + icr;
+        option_erji.dataset.source[2][2] = option_erji.dataset.source[2][2] + icr;
+        option_erji.dataset.source[3][1] = option_erji.dataset.source[3][1] + icr;
+        option_erji.dataset.source[3][2] = option_erji.dataset.source[3][2] + icr;
+        erji.setOption(option_erji);
+
+        option_ipad.dataset.source[1][1] = option_ipad.dataset.source[1][1] + icr;
+        option_ipad.dataset.source[1][2] = option_ipad.dataset.source[1][2] + icr;
+        option_ipad.dataset.source[2][1] = option_ipad.dataset.source[2][1] + icr;
+        option_ipad.dataset.source[2][2] = option_ipad.dataset.source[2][2] + icr;
+        option_ipad.dataset.source[3][1] = option_ipad.dataset.source[3][1] + icr;
+        option_ipad.dataset.source[3][2] = option_ipad.dataset.source[3][2] + icr;
+        ipad.setOption(option_ipad);
+
+        option_shouji.dataset.source[1][1] = option_shouji.dataset.source[1][1] + icr;
+        option_shouji.dataset.source[1][2] = option_shouji.dataset.source[1][2] + icr;
+        option_shouji.dataset.source[2][1] = option_shouji.dataset.source[2][1] + icr;
+        option_shouji.dataset.source[2][2] = option_shouji.dataset.source[2][2] + icr;
+        option_shouji.dataset.source[3][1] = option_shouji.dataset.source[3][1] + icr;
+        option_shouji.dataset.source[3][2] = option_shouji.dataset.source[3][2] + icr;
+        shouji.setOption(option_shouji);
+
+        option_diannao.dataset.source[1][1] = option_diannao.dataset.source[1][1] + icr;
+        option_diannao.dataset.source[1][2] = option_diannao.dataset.source[1][2] + icr;
+        option_diannao.dataset.source[2][1] = option_diannao.dataset.source[2][1] + icr;
+        option_diannao.dataset.source[2][2] = option_diannao.dataset.source[2][2] + icr;
+        option_diannao.dataset.source[3][1] = option_diannao.dataset.source[3][1] + icr;
+        option_diannao.dataset.source[3][2] = option_diannao.dataset.source[3][2] + icr;
+        diannao.setOption(option_diannao);
+
+
+    }, 2000);
 
 
 </script>

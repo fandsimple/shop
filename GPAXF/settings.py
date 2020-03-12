@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'tb$_4d&!y6-j8yayb=ec4lt)*^m-%rz(ns(i-o30md_s-k7*64'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
 
 # Application definition
 
@@ -76,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'GPAXF.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -87,10 +84,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '102487',
         'HOST': 'localhost',
-        'PORT': 3306
+        'PORT': 3306,
+        'CONN_MAX_AGE': 9
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -110,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -123,7 +119,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -171,5 +166,5 @@ CACHES = {
 
 
 APP_ID = '2016092000558425'
-APP_PRIVATE_KEY = open(os.path.join(BASE_DIR, 'alipay/app_private_key.pem'), 'r',encoding="utf-8").read()
-ALIPAY_PUBLIC_KEY = open(os.path.join(BASE_DIR, 'alipay/alipay_public_key.pem'), 'r',encoding="utf-8").read()
+APP_PRIVATE_KEY = open(os.path.join(BASE_DIR, 'alipay/app_private_key.pem'), 'r', encoding="utf-8").read()
+ALIPAY_PUBLIC_KEY = open(os.path.join(BASE_DIR, 'alipay/alipay_public_key.pem'), 'r', encoding="utf-8").read()

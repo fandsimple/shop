@@ -37,7 +37,8 @@ urlpatterns = [
     url(r'^addaddress/',views.add_address,name="addaddress"),
 
 
-    url('^count/', views.count, name='count')
+    url('^count/', views.count, name='count'),
+    url('^countdata', views.countdata, name='countdata')
 
 
 ]
