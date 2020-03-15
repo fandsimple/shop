@@ -19,7 +19,7 @@ from django.contrib import admin
 from GPAXF import settings
 
 urlpatterns = [
-    url(r'^admin/App/', include('App.urls', namespace='app')),
+    url(r'^admin/App/', include('App.urlss', namespace='app')),
     url(r'^admin/', admin.site.urls),
     url(r'^axf/', include('App.urls', namespace='axf')),
 ]

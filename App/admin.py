@@ -30,7 +30,6 @@ class MainWheelAdmin(BaseAdmin):
     # list_display_links = ('id', 'caption') # 配置点击进入详情字段
 
 
-
 @admin.register(MainNav)
 class MainNavAdmin(BaseAdmin):
     list_display = (
@@ -38,6 +37,16 @@ class MainNavAdmin(BaseAdmin):
         'name',
         'trackid',
     )  # 显示字段
+
+
+@admin.register(Cart)
+class CartAdmin(BaseAdmin):
+    list_display = (
+        'c_user',
+        'c_goods',
+        'c_goods_num',
+        'c_is_select',
+    )  # 显示
 
 
 @admin.register(MainMustBuy)
@@ -48,6 +57,7 @@ class MainMustBuyAdmin(BaseAdmin):
         'trackid',
     )  # 显示字段
 
+
 @admin.register(MainShop)
 class MainShopAdmin(BaseAdmin):
     list_display = (
@@ -55,6 +65,7 @@ class MainShopAdmin(BaseAdmin):
         'name',
         'trackid',
     )  # 显示
+
 
 @admin.register(MainShow)
 class MainShowAdmin(BaseAdmin):
@@ -92,7 +103,6 @@ class FoodTypeAdmin(BaseAdmin):
     )  # 显示
 
 
-
 @admin.register(Goods)
 class GoodsAdmin(BaseAdmin):
     list_display = (
@@ -115,7 +125,7 @@ class GoodsAdmin(BaseAdmin):
 
 
 @admin.register(AXFUser)
-class GoodsAdmin(BaseAdmin):
+class AXFUserAdmin(BaseAdmin):
     list_display = (
         'u_username',
         'u_password',
@@ -126,8 +136,6 @@ class GoodsAdmin(BaseAdmin):
     )  # 显示
 
 
-
-
 @admin.register(Order)
 class OrderAdmin(BaseAdmin):
     list_display = (
@@ -136,7 +144,6 @@ class OrderAdmin(BaseAdmin):
         'o_time',
         'o_status',
     )  # 显示
-
 
 
 @admin.register(OrderGoods)
@@ -159,6 +166,7 @@ class AddressGoodsAdmin(BaseAdmin):
         'a_username',
         'a_user',
     )  # 显示
+
 
 @admin.register(OrderAddress)
 class OrderAddressAdmin(BaseAdmin):
